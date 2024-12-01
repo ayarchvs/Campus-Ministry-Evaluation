@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Add Event</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <style>
+             body {
+            background-color: #0a1f44;
+            background-image: url('assets/img/login.png');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, #0a1f44 70%);
+        }
+
+        h1 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    p {
+        font-size: 1.1rem;
+        font-weight: 300;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        color: black;
+    }
+
+        .login-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .card-body{
+            width: 100vh;
+        }
+        .card-header{
+            font-family: Montserrat;
+            font-weight: bolder;
+        }
+        .btn-primary {
+            background-color: #ffc107;
+            border-color: #ffc107;
+            color: #000;
+            height: 48px;
+            font-size: 18px;
+            font-weight: 500;
+            width: 20vh;
+            margin-bottom: 2vh;
+            font-family: Montserrat;
+            font-weight: bold;
+        }   
+        </style>
+    </head>
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-20">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Add Event Details</h3></div>
+                                    <div class="card-body">
+                                        <form action="php/add-event.php" method="POST" enctype="multipart/form-data">
+                                            <div class="form-floating mb-3">
+                                                <select class="form-control" id="eventType" name="eventType" aria-label="Event Type" required>
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Retreat">Retreat</option>
+                                                    <option value="Recollection 02">Recollection 02</option>
+                                                    <option value="Recollection 01">Recollection 01</option>
+                                                </select>
+                                                <label for="eventType">Event Type</label>
+                                            </div>
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="eventMonth" name="eventMonth" type="number" placeholder="Month" min="1" max="12" required />                                           
+                                                        <label for="eventMonth">Month</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="eventDay" name="eventDay" type="number" placeholder="Day" min="1" max="31" required />
+                                                        <label for="eventDay">Day</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="eventYear" name="eventYear" type="number" placeholder="Enter year" min="1900" max="2100" required />
+                                                        <label for="eventYear">Year</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="eventCourse" name="eventCourse" type="text" placeholder="Enter event Course" required />
+                                                <label for="eventCourse">Course</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <select class="form-control" id="religion" name="religion" aria-label="Religion" required>
+                                                    <option value="" disabled selected>Select</option>
+                                                    <option value="Christian">Christian</option>
+                                                    <option value="Muslim">Muslim</option>
+                                                    <option value="Non-Christian">Christians of Other Denominations</option>
+                                                </select>
+                                                <label for="religion">Religion</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" id="eventLocation" name="eventLocation" type="text" placeholder="Enter event location" required />
+                                                <label for="eventLocation">Location</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input class="form-control" type="file" id="excelFile" name="excelFile" accept=".xlsx, .csv" required />
+                                                <label for="excelFile">Upload Excel File</label>
+                                            </div>
+
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+
+                                            <div class="card-footer text-center py-3">
+                                                <div class="small"><a href="main-page.php">Back to dashboard</a></div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/add-event.js"></script>
+        <script> 
+            const currentYear = new Date().getFullYear();
+            const yearInput = document.getElementById('eventYear');
+            yearInput.value = currentYear;
+        </script>
+    </body>
+</html>
