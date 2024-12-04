@@ -19,9 +19,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Get and sanitize form data
     $eventType = filter_input(INPUT_POST, 'eventType', FILTER_SANITIZE_STRING);
-    $eventMonth = filter_input(INPUT_POST, 'eventMonth', FILTER_VALIDATE_INT);
-    $eventDay = filter_input(INPUT_POST, 'eventDay', FILTER_VALIDATE_INT);
-    $eventYear = filter_input(INPUT_POST, 'eventYear', FILTER_VALIDATE_INT);
+    $eventStartDate = filter_input(INPUT_POST, 'eventStartDate', FILTER_SANITIZE_STRING);
+    $eventEndDate = filter_input(INPUT_POST, 'eventEndDate', FILTER_SANITIZE_STRING);
+
+    // $eventMonth = filter_input(INPUT_POST, 'eventMonth', FILTER_VALIDATE_INT);
+    // $eventDay = filter_input(INPUT_POST, 'eventDay', FILTER_VALIDATE_INT);
+    // $eventYear = filter_input(INPUT_POST, 'eventYear', FILTER_VALIDATE_INT);
     $eventCourse = filter_input(INPUT_POST, 'eventCourse', FILTER_SANITIZE_STRING);
     $religion = filter_input(INPUT_POST, 'religion', FILTER_SANITIZE_STRING);
     $location = filter_input(INPUT_POST, 'eventLocation', FILTER_SANITIZE_STRING);
@@ -49,10 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             exit;
         }
 
-        $sql = "INSERT INTO event (Staff_ID, E_Type, E_Year, E_Month, E_Day, E_Course, E_Religion, E_Location) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO event (Staff_ID, E_Type, E_StartDate, E_EndDate, E_Course, E_Religion, E_Location) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("isiiisss", $staff_id, $eventType, $eventYear, $eventMonth, $eventDay, $eventCourse, $religion, $location);
+        $stmt->bind_param("issssss", $staff_id, $eventType, $eventStartDate, $eventEndDate, $eventCourse, $religion, $location);
 
         if ($stmt->execute()) {
             echo "success";

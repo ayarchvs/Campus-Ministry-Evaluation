@@ -81,7 +81,7 @@
                             <tbody>
                                 <?php while ($row = $result->fetch_assoc()): ?>
                                     <tr>
-                                        <td><?= htmlspecialchars($row['E_Year'] . '/' . $row['E_Month'] . '/' . $row['E_Day']) ?></td>
+                                        <td><?= htmlspecialchars($row['E_StartDate']) .' to '. ($row['E_EndDate'])?></td>
                                         <td><?= htmlspecialchars($row['E_Type']) ?></td>
                                         <td><?= htmlspecialchars($row['E_Course']) ?></td>
                                         <td><?= htmlspecialchars($row['E_Religion']) ?></td>

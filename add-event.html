@@ -106,7 +106,7 @@
                                                 <label for="eventType">Event Type</label>
                                             </div>
 
-                                            <div class="row mb-3">
+                                            <!-- <div class="row mb-3">
                                                 <div class="col-md-4">
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="eventMonth" name="eventMonth" type="number" placeholder="Month" min="1" max="12" required />                                           
@@ -123,6 +123,22 @@
                                                     <div class="form-floating mb-3 mb-md-0">
                                                         <input class="form-control" id="eventYear" name="eventYear" type="number" placeholder="Enter year" min="1900" max="2100" required />
                                                         <label for="eventYear">Year</label>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
+                                            <div class="row mb-3">
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="eventStartDate" name="eventStartDate" type="date" placeholder="Enter Start Date" required />
+                                                        <label for="eventStartDate">Event Start Date</label>
+                                                    </div>
+                                                </div>
+                                            
+                                                <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="eventEndDate" name="eventEndDate" type="date" placeholder="Enter End Date" required />
+                                                        <label for="eventEndDate">Event End Date</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -170,10 +186,10 @@
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/add-event.js"></script>
-        <script> 
+        <!-- <script> 
             const currentYear = new Date().getFullYear();
             const yearInput = document.getElementById('eventYear');
             yearInput.value = currentYear;
-        </script>
+        </script> -->
     </body>
 </html>

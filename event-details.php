@@ -43,21 +43,24 @@ include "config/config.php";
             <div class="container-fluid px-4">
 
                 <?php
-                if (isset($_GET['id'])) {
-                    $eventId = $_GET['id'];
-                    $eventId = intval($eventId);
+                    if (isset($_GET['id'])) {
+                        $eventId = $_GET['id'];
+                        $eventId = intval($eventId);
 
-                    $sql = "SELECT * FROM event WHERE Event_ID = $eventId";
-                    $result = mysqli_query($conn, $sql);
+                        $sql = "SELECT * FROM event WHERE Event_ID = $eventId";
+                        $result = mysqli_query($conn, $sql);
 
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        $event_type = $row['E_Type'];
-                        $event_date = $row['E_Year'] . "/" . $row['E_Month'] . "/" . $row['E_Day'];
+                        if ($result && mysqli_num_rows($result) > 0) {
+                            $row = mysqli_fetch_assoc($result);
+                            $event_type = $row['E_Type'];
+                            $eventStartDate = $row['E_StartDate'];
+                            $eventEndDate = $row['E_EndDate'];
 
-                        echo '<h1 class="mt-4">' . $event_type . ' (' . $event_date . ')</h1>';
+                            echo '<h1 class="mt-4">' . $event_type . '</h1>';
+                            echo '<h2 class="mt-4">Start Date: ' . $eventStartDate . '</h2>';
+                            echo '<h2 class="mt-4">End Date: ' . $eventEndDate . '</h2>';
+                        }
                     }
-                }
                 ?>
 
                 <ol class="breadcrumb mb-4">
