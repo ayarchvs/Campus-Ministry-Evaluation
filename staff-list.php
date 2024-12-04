@@ -19,6 +19,8 @@ $result2 = $stmt2->get_result();
         <title>Staff List</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
+        <!-- TRYING TO ADD OFFLINE BOOTSTRAP SETUP -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="sb-nav-fixed">
@@ -91,7 +93,8 @@ $result2 = $stmt2->get_result();
                 </div>
             </main>
         </div>
-
+         <!-- TRYING TO ADD OFFLINE BOORTSTRAP SETUP -->
+         <script src="js/bootstrap.bundle.min.js"></script>
         <!-- Bootstrap JS and dependencies -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zyfROm+jR12G8z+9coH/sRzDX9n5g/vjcbzDGM0G" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gyb6BJiD6RYhiu1I1i5vYcwyJ5/hB5Y5J30BpeJqS5Fj9J9kj5" crossorigin="anonymous"></script>

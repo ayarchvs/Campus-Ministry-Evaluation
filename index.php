@@ -19,6 +19,8 @@ unset($_SESSION['login_email']);
     <meta name="author" content="" />
     <title>Login - MyADZU</title>
     <link href="css/styles.css" rel="stylesheet" />
+    <!-- TRYING TO ADD OFFLINE BOOTSTRAP SETUP -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -149,6 +151,8 @@ unset($_SESSION['login_email']);
             </div>
         </div>
     </div>
+     <!-- TRYING TO ADD OFFLINE BOORTSTRAP SETUP -->
+     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
 </body>
