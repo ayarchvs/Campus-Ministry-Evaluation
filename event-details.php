@@ -394,38 +394,49 @@ include "config/config.php";
                 </div>
 
                 <script>
-                    // Wait for the DOM to load
+                    // Wait for the DOM to fully load before executing scripts
                     document.addEventListener('DOMContentLoaded', function() {
+                        // Selectors for the logistics and content table rows
                         const logistics = '#datatablesSimple3 tbody tr';
                         const content = '#datatablesSimple4 tbody tr';
 
+                        // IDs of the chart elements in the DOM
                         const logischart = 'myChart1';
                         const contentchart = 'myChart2';
-                        const chartDataLogis = extractTableData(logistics); // Extract common data for both charts
-                        const chartDataContent = extractTableData(content);
-                        // Create Bar Chart
+
+                        // Extract data from the tables
+                        const chartDataLogis = extractTableData(logistics); // Data for logistics
+                        const chartDataContent = extractTableData(content); // Data for content
+
+                        // Create bar charts for the extracted data
                         createBarChart(chartDataLogis, logischart);
                         createBarChart(chartDataContent, contentchart);
+
+                        // Generate the average bar chart
                         AverageBarChart();
                     });
 
-                    // Common data extraction function
+                    // Function to extract data from a table based on its row selector
                     function extractTableData(id) {
+                        // Select all rows within the specified table
                         const tableRows = document.querySelectorAll(id);
 
+                        // Initialize an object to store chart data
                         const data = {
-                            labels: [],
-                            voted_1: [],
-                            voted_2: [],
-                            voted_3: [],
-                            voted_4: [],
-                            voted_5: []
+                            labels: [],      // Categories (e.g., Process, Venue)
+                            voted_1: [],     // Votes for "Poor"
+                            voted_2: [],     // Votes for "Fair"
+                            voted_3: [],     // Votes for "Good"
+                            voted_4: [],     // Votes for "Very Good"
+                            voted_5: []      // Votes for "Excellent"
                         };
 
+                        // Loop through each row in the table
                         tableRows.forEach(row => {
-                            const cells = row.querySelectorAll('td');
+                            const cells = row.querySelectorAll('td'); // Get all cells in the row
 
-                            data.labels.push(cells[0].textContent); // Category (e.g., Process, Venue)
+                            // Add data from the cells to the respective arrays
+                            data.labels.push(cells[0].textContent); // First cell is the label
                             data.voted_1.push(parseInt(cells[1].textContent)); // Votes for "Poor"
                             data.voted_2.push(parseInt(cells[2].textContent)); // Votes for "Fair"
                             data.voted_3.push(parseInt(cells[3].textContent)); // Votes for "Good"
@@ -433,17 +444,21 @@ include "config/config.php";
                             data.voted_5.push(parseInt(cells[5].textContent)); // Votes for "Excellent"
                         });
 
-                        return data;
+                        return data; // Return the extracted data
                     }
 
-                    // Create Bar Chart
+                    // Function to create a bar chart
                     function createBarChart(data, chart) {
-                        const ctx = document.getElementById(chart).getContext('2d');
+                        const ctx = document.getElementById(chart).getContext('2d'); // Get chart context
+
+                        // Create a new Chart instance
                         new Chart(ctx, {
-                            type: 'bar',
+                            type: 'bar', // Set chart type to bar
                             data: {
-                                labels: data.labels,
-                                datasets: [{
+                                labels: data.labels, // Use labels from the data object
+                                datasets: [
+                                    // Add datasets for each voting category with specific colors
+                                    {
                                         label: 'Poor (1)',
                                         data: data.voted_1,
                                         backgroundColor: 'rgba(255, 99, 132, 0.2)',
@@ -481,14 +496,14 @@ include "config/config.php";
                                 ]
                             },
                             options: {
-                                responsive: true,
+                                responsive: true, // Make the chart responsive
                                 scales: {
-                                    yAxes: [{
+                                    yAxes: [{ // Configure Y-axis
                                         ticks: {
-                                            precision: 0
+                                            precision: 0 // Ensure whole numbers on Y-axis
                                         }
                                     }],
-                                    y: {
+                                    y: { // Begin Y-axis at zero
                                         beginAtZero: true
                                     }
                                 }
@@ -496,39 +511,25 @@ include "config/config.php";
                         });
                     }
 
+                    // Function to create the average bar chart using PHP data
                     function AverageBarChart() {
-                        const ctx = document.getElementById('myChart3').getContext('2d');
+                        const ctx = document.getElementById('myChart3').getContext('2d'); // Get chart context
+
+                        // Create a new Chart instance
                         const myChart = new Chart(ctx, {
-                            type: 'bar',
+                            type: 'bar', // Set chart type to bar
                             data: {
-                                // Labels will be L1 to L6 and C1 to C8
-                                labels: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8'],
+                                labels: ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8'], // Labels for average data
                                 datasets: [
                                     <?php 
+                                        $colors = [/* Predefined color array */];
 
-                                        $colors = [
-                                            'rgba(54, 162, 235, 0.2)', // Blue
-                                            'rgba(255, 99, 132, 0.2)', // Red
-                                            'rgba(75, 192, 192, 0.2)', // Teal
-                                            'rgba(153, 102, 255, 0.2)', // Purple
-                                            'rgba(255, 159, 64, 0.2)', // Orange
-                                            'rgba(255, 206, 86, 0.2)', // Yellow
-                                            'rgba(255, 99, 132, 0.2)', // Light Red
-                                            'rgba(54, 162, 235, 0.2)', // Light Blue
-                                            'rgba(75, 192, 192, 0.2)', // Light Teal
-                                            'rgba(153, 102, 255, 0.2)', // Light Purple
-                                            'rgba(255, 159, 64, 0.2)', // Light Orange
-                                            'rgba(255, 206, 86, 0.2)', // Light Yellow
-                                            'rgba(54, 162, 235, 0.2)', // Blue again
-                                            'rgba(255, 99, 132, 0.2)', // Red again
-                                            'rgba(75, 192, 192, 0.2)'  // Teal again
-                                        ];
-                                        // Dynamically generate datasets for each course
+                                        // Loop through PHP $data and dynamically generate datasets
                                         foreach ($data as $index => $item) {
-
                                             $bgColor = $colors[$index % count($colors)];
                                             $borderColor = str_replace('0.2', '1', $bgColor);
 
+                                            // Echo dataset configuration in JavaScript syntax
                                             echo '{
                                                 label: "'.$item['course'].'", 
                                                 data: ['. 
@@ -557,11 +558,11 @@ include "config/config.php";
                                 ]
                             },
                             options: {
-                                responsive: true,
+                                responsive: true, // Make the chart responsive
                                 scales: {
-                                    yAxes: [{
+                                    yAxes: [{ // Configure Y-axis
                                         ticks: {
-                                            min: 0
+                                            min: 0 // Ensure Y-axis starts from zero
                                         }
                                     }]
                                 }
@@ -569,6 +570,7 @@ include "config/config.php";
                         });
                     }
                 </script>
+
                 <!-- TRYING TO ADD OFFLINE BOORTSTRAP SETUP -->
                 <script src="js/bootstrap.bundle.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
