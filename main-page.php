@@ -42,18 +42,15 @@
                         exit;
                     }
 
-                    // Fetch events based on user role
-                    $allowed_event_types = get_allowed_event_types();
-                    $event_type_placeholders = implode(',', array_fill(0, count($allowed_event_types), '?'));
-
-                    $query = "SELECT event.*, staff.S_Name AS Staff_Name FROM `event`
-                                    JOIN `staff` ON event.Staff_ID = staff.Staff_ID
-                                    WHERE event.E_Type IN ($event_type_placeholders)";
+                    // Fetch all events
+                    $query = "SELECT event.*, staff.S_Name AS Staff_Name 
+                    FROM `event`
+                    JOIN `staff` ON event.Staff_ID = staff.Staff_ID";
 
                     $stmt = $conn->prepare($query);
-                    $stmt->bind_param(str_repeat('s', count($allowed_event_types)), ...$allowed_event_types);
                     $stmt->execute();
                     $result = $stmt->get_result();
+
                     ?>
 
                     <div class="card-body">
