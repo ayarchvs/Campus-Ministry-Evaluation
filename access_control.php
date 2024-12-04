@@ -13,10 +13,7 @@ function can_manage_event($event_type) {
 }
 
 function get_allowed_event_types() {
-    if (is_admin()) {
-        return ['Retreat', 'Recollection 01', 'Recollection 02'];
-    }
-    return isset($_SESSION['event_type']) ? [$_SESSION['event_type']] : [];
+    return ['Retreat', 'Recollection 01', 'Recollection 02'];   
 }
 
 function can_add_staff() {
