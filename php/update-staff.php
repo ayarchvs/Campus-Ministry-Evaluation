@@ -12,6 +12,20 @@ if (isset($_POST['staffId'], $_POST['staffFirstName'], $_POST['staffLastName'], 
 
     $Name = $staffLastName . ", " . $staffFirstName;  // Concatenate names
 
+     // Check if the staff being updated is an admin
+     $checkAdminQuery = "SELECT is_admin FROM staff WHERE Staff_ID = ?";
+     $checkAdminStmt = $conn->prepare($checkAdminQuery);
+     $checkAdminStmt->bind_param("s", $staffID);
+     $checkAdminStmt->execute();
+     $checkAdminResult = $checkAdminStmt->get_result();
+     $isAdmin = $checkAdminResult->fetch_assoc()['is_admin'];
+ 
+     // If the staff is an admin, don't allow changing the type
+     if ($isAdmin == 1) {
+         $staffType = 'Admin';  // Force the type to remain 'Admin'
+     }
+ 
+
     // SQL query to update staff data
     $query = "UPDATE staff SET S_Name = '$Name', S_Type = '$staffType', S_Email = '$staffEmail' WHERE Staff_ID = '$staffID'";
 
